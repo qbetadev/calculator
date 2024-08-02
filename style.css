@@ -1,11 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .main-page {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
     height: 100vh;
 }
 
@@ -33,11 +30,29 @@
 }
 
 .calculator__display {
+    box-sizing: border-box;
     height: 100px;
     width: 450px;
+    padding: 10px;
     background-color: rgb(255,240,245);
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.display_current-operation {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 39px;
+}
+
+.display_current-number {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 39px;
 }
 
 .calculator__buttons-area {
