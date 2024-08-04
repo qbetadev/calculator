@@ -34,9 +34,10 @@
     height: 100px;
     width: 450px;
     padding: 10px;
-    background-color: rgb(255,240,245);
+    background-color: rgb(197, 224, 216);
     border: 1px solid black;
     border-radius: 10px;
+    font-size: 22px;
 }
 
 .display_current-operation {
@@ -66,15 +67,26 @@
 }
 
 .button {
-    background-color: aliceblue;
+    background-color: rgb(193, 190, 209);
     border: 1px solid black;
     border-radius: 10px;
     text-align: center;
-    
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.button_operate,
+.button_equal {
+    background-color: rgb(255, 235, 222);
 }
 
 .button:hover {
     background-color: lightblue;
+}
+
+.button_operate:hover,
+.button_equal:hover {
+    background-color: rgb(255, 211, 189);
 }
 
 .button:nth-child(1) {
