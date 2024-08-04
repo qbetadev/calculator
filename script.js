@@ -1,5 +1,6 @@
 const numberButtons = document.querySelectorAll('.button_number');
 const operatorButtons = document.querySelectorAll('.button_operate');
+const signButton = document.querySelector('.button_sign');
 const clearButton = document.querySelector('.button_clear');
 const deleteButton = document.querySelector('.button_delete');
 const pointButton = document.querySelector('.button_point');
@@ -29,6 +30,8 @@ pointButton.addEventListener('click', () => appendPoint());
 
 equalButton.addEventListener('click', () => evaluate());
 
+signButton.addEventListener('click', () => changeSign());
+
 function appendNumber(string) {
     if (currentNumberDisplay.textContent == 0 || shouldResetCurrentNumber) {
         resetDisplay();
@@ -42,6 +45,14 @@ function appendNumber(string) {
 function appendPoint() {
     if (currentNumberDisplay.textContent.includes('.')) return;
     currentNumberDisplay.textContent += '.';
+}
+
+function changeSign() {
+    if (currentNumberDisplay.textContent.includes('-')) {
+        currentNumberDisplay.textContent = currentNumberDisplay.textContent.slice(1);
+    } else {
+        currentNumberDisplay.textContent = '-' + currentNumberDisplay.textContent;
+    }
 }
 
 function clearDisplay() {
