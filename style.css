@@ -100,3 +100,13 @@
     height: 50px;
     background-color: floralwhite;
 }
+
+.logo {
+    height: 25px;
+    margin-left: 5px;
+    transition: transform .5s ease-in-out;
+}
+
+.logo:hover {
+    transform: rotate(360deg);
+}

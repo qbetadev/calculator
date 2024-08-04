@@ -14,34 +14,19 @@ let currentOperator = '';
 
 let shouldResetCurrentNumber = false;
 
+
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => appendNumber(button.textContent));
 });
-
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => setCurrentOperation(button.textContent));
 });
-
 window.addEventListener('keydown', (e) => handleKeyboardInput(e));
-
 clearButton.addEventListener('click', () => clearDisplay());
-
 deleteButton.addEventListener('click', () => deleteNumber());
-
 pointButton.addEventListener('click', () => appendPoint());
-
 equalButton.addEventListener('click', () => evaluate());
-
 signButton.addEventListener('click', () => changeSign());
-
-function handleKeyboardInput(e) {
-    if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
-    if (e.key === '.') appendPoint();
-    if (e.key === 'Enter' || e.key === '=') evaluate();
-    if (e.key === 'Backspace') deleteNumber();
-    if (e.key === 'Escape') clearDisplay();
-    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key ==='/') setCurrentOperation(e.key);
-}
 
 function appendNumber(string) {
     if (currentNumberDisplay.textContent == 0 || shouldResetCurrentNumber) {
@@ -103,7 +88,6 @@ function evaluate() {
     operandSecond = currentNumberDisplay.textContent;
     currentOperationDisplay.textContent = `${operandFirst} ${currentOperator} ${operandSecond} =`;
     currentNumberDisplay.textContent = operate(operandFirst, operandSecond, currentOperator);
-    // currentNumberDisplay.textContent = roundResult(operate(operandFirst, operandSecond, currentOperator));
     currentOperator = '';
     shouldResetCurrentNumber = true;
 }
@@ -124,17 +108,18 @@ function divide(number1, number2) {
     return number1 / number2;
 }
 
-function findOperator(array, operators) {
-    return array.filter((element) => operators.includes(element))[0];
-}
-
 function convertToFloat(string) {
     return parseFloat(string);
 }
 
-// function roundResult(number) {
-//     return Math.round(number * 1000) / 1000;
-// }
+function handleKeyboardInput(e) {
+    if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+    if (e.key === '.') appendPoint();
+    if (e.key === 'Enter' || e.key === '=') evaluate();
+    if (e.key === 'Backspace') deleteNumber();
+    if (e.key === 'Escape') clearDisplay();
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key ==='/') setCurrentOperation(e.key);
+}
 
 function operate(operandFirst, operandSecond, currentOperator) {
     operandFirst = parseFloat(operandFirst);
