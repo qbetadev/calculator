@@ -22,6 +22,8 @@ operatorButtons.forEach((button) => {
     button.addEventListener('click', () => setCurrentOperation(button.textContent));
 });
 
+window.addEventListener('keydown', (e) => handleKeyboardInput(e));
+
 clearButton.addEventListener('click', () => clearDisplay());
 
 deleteButton.addEventListener('click', () => deleteNumber());
@@ -31,6 +33,15 @@ pointButton.addEventListener('click', () => appendPoint());
 equalButton.addEventListener('click', () => evaluate());
 
 signButton.addEventListener('click', () => changeSign());
+
+function handleKeyboardInput(e) {
+    if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+    if (e.key === '.') appendPoint();
+    if (e.key === 'Enter' || e.key === '=') evaluate();
+    if (e.key === 'Backspace') deleteNumber();
+    if (e.key === 'Escape') clearDisplay();
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key ==='/') setCurrentOperation(e.key);
+}
 
 function appendNumber(string) {
     if (currentNumberDisplay.textContent == 0 || shouldResetCurrentNumber) {
