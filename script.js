@@ -25,7 +25,7 @@ clearButton.addEventListener('click', () => clearDisplay());
 
 deleteButton.addEventListener('click', () => deleteNumber());
 
-pointButton.addEventListener('click', () => appendNumber(pointButton.textContent));
+pointButton.addEventListener('click', () => appendPoint());
 
 equalButton.addEventListener('click', () => evaluate());
 
@@ -37,6 +37,11 @@ function appendNumber(string) {
     } else {
         currentNumberDisplay.textContent += string;
     }
+}
+
+function appendPoint() {
+    if (currentNumberDisplay.textContent.includes('.')) return;
+    currentNumberDisplay.textContent += '.';
 }
 
 function clearDisplay() {
@@ -69,9 +74,14 @@ function setCurrentOperation(operator) {
 
 function evaluate() {
     if (currentOperator == '' || shouldResetCurrentNumber) return;
+    if (currentOperator == '/' && currentNumberDisplay.textContent == '0') {
+        alert('You can\'t divide by zero!');
+        return;
+    };
     operandSecond = currentNumberDisplay.textContent;
     currentOperationDisplay.textContent = `${operandFirst} ${currentOperator} ${operandSecond} =`;
     currentNumberDisplay.textContent = operate(operandFirst, operandSecond, currentOperator);
+    // currentNumberDisplay.textContent = roundResult(operate(operandFirst, operandSecond, currentOperator));
     currentOperator = '';
     shouldResetCurrentNumber = true;
 }
@@ -88,7 +98,7 @@ function multiply(number1, number2) {
     return number1 * number2;
 }
 
-function divide(number1, number2) {
+function divide(number1, number2) {   
     return number1 / number2;
 }
 
@@ -100,12 +110,16 @@ function convertToFloat(string) {
     return parseFloat(string);
 }
 
+// function roundResult(number) {
+//     return Math.round(number * 1000) / 1000;
+// }
+
 function operate(operandFirst, operandSecond, currentOperator) {
     operandFirst = parseFloat(operandFirst);
     operandSecond = parseFloat(operandSecond);
     switch(currentOperator) {
         case '+':
-            return add (operandFirst, operandSecond);
+            return add(operandFirst, operandSecond);
         case '-':
             return subtract(operandFirst, operandSecond);
         case '*':
